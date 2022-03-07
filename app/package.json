@@ -11,6 +11,7 @@
     "ci-check": "run-p lint typecheck"
   },
   "dependencies": {
+    "@headlessui/react": "^1.5.0",
     "@sanity/image-url": "^1.0.1",
     "next": "12.1.0",
     "next-auth": "^4.2.1",
