@@ -1,9 +1,10 @@
 import type { GetServerSideProps } from 'next'
 import { FcGoogle } from 'react-icons/fc'
-
-import logo_white from '$public/logowhite.png'
 import Image from 'next/image'
 import { getProviders, signIn } from 'next-auth/react'
+
+import logo_white from '$public/logowhite.png'
+import { createUser } from '$lib/utils'
 
 export default function LoginPage({ providers }: PageProps) {
   return (
@@ -33,8 +34,11 @@ export default function LoginPage({ providers }: PageProps) {
             {Object.values(providers).map(provider => (
               <button
                 key={provider.name}
-                onClick={() => signIn(provider.id, { callbackUrl: '/' })}
-                className="flex items-center rounded-lg bg-[#FBF8F9] px-6 py-3"
+                onClick={async () => {
+                  await signIn(provider.id, { callbackUrl: '/' })
+                  createUser()
+                }}
+                className="flex items-center rounded-lg bg-gray-100 px-6 py-3"
               >
                 <FcGoogle className="mr-4" size={20} />
                 Continue with Google

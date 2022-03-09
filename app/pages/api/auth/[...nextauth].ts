@@ -15,15 +15,11 @@ export default NextAuth({
 
   debug: process.env.NODE_ENV !== 'production',
 
-  // callbacks: {
-  //   async jwt({ token, user, account, profile, isNewUser }) {
-  //     return { ...token, uid: token.sub }
-  //   },
-  //   async session({ session, user, token }) {
-  //     if (token.sub) {
-  //       return { ...session, user: { ...session.user, uid: token.sub } }
-  //     }
-  //     return session
-  //   },
-  // },
+  callbacks: {
+    async session({ session, token }) {
+      if (token.sub)
+        return { ...session, user: { ...session.user, uid: token.sub } }
+      return session
+    },
+  },
 })

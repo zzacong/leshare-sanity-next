@@ -4,8 +4,8 @@ const userSchema = {
   type: 'document',
   fields: [
     {
-      name: 'username',
-      title: 'Username',
+      name: 'name',
+      title: 'Name',
       type: 'string',
     },
     {
