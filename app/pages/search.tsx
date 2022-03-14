@@ -1,14 +1,17 @@
 import type { GetServerSideProps } from 'next'
 import type { User } from '$lib/types'
 
-import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
+import { useRecoilState } from 'recoil'
 
-import { Feed, Layout, Pins } from '$components'
-import { userQuery } from '$lib/query'
+import { Pins, Layout, Feed } from '$components'
 import { sanityClient } from '$lib/sanity'
+import { userQuery } from '$lib/query'
+import { searchState } from '$lib/atoms'
 
-export default function CategoryPage({ user }: PageProps) {
+export default function SearchPage({ user }: PageProps) {
+  const [searchTerm, setSearchTerm] = useRecoilState(searchState)
+
   return (
     <Layout user={user}>
       <Pins user={user}>

@@ -4,15 +4,15 @@ import type { User } from '$lib/types'
 import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
 
-import { Feed, Layout, Pins } from '$components'
+import { Layout, PinDetail, Pins } from '$components'
 import { userQuery } from '$lib/query'
 import { sanityClient } from '$lib/sanity'
 
-export default function CategoryPage({ user }: PageProps) {
+export default function PinDetailPage({ user }: PageProps) {
   return (
     <Layout user={user}>
       <Pins user={user}>
-        <Feed />
+        <PinDetail user={user} />
       </Pins>
     </Layout>
   )

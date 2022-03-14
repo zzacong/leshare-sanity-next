@@ -2,14 +2,16 @@ import type { GetServerSideProps } from 'next'
 import type { User } from '$lib/types'
 import { getSession } from 'next-auth/react'
 
-import { Pins, Layout } from '$components'
+import { Pins, Layout, Feed } from '$components'
 import { sanityClient } from '$lib/sanity'
 import { userQuery } from '$lib/query'
 
 export default function HomePage({ user }: PageProps) {
   return (
     <Layout user={user}>
-      <Pins />
+      <Pins user={user}>
+        <Feed />
+      </Pins>
     </Layout>
   )
 }
