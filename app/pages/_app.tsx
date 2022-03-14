@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { RecoilRoot } from 'recoil'
 import { SessionProvider } from 'next-auth/react'
 
 import '../styles/globals.css'
@@ -16,9 +17,11 @@ export default function MyApp({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SessionProvider session={session}>
-        <Component {...pageProps} />
-      </SessionProvider>
+      <RecoilRoot>
+        <SessionProvider session={session}>
+          <Component {...pageProps} />
+        </SessionProvider>
+      </RecoilRoot>
     </>
   )
 }

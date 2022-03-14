@@ -1,15 +1,19 @@
 import type { GetServerSideProps } from 'next'
 import type { User } from '$lib/types'
+
+import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
 
-import { Pins, Layout } from '$components'
-import { sanityClient } from '$lib/sanity'
+import { Layout } from '$components'
 import { userQuery } from '$lib/query'
+import { sanityClient } from '$lib/sanity'
 
-export default function HomePage({ user }: PageProps) {
+export default function CategoryPage({ user }: PageProps) {
+  const router = useRouter()
+
   return (
     <Layout user={user}>
-      <Pins />
+      <div>CategoryPage {router.query.slug}</div>
     </Layout>
   )
 }
