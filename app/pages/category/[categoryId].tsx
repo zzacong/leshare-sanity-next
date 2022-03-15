@@ -1,11 +1,10 @@
 import type { GetServerSideProps } from 'next'
-import type { User } from '$lib/types'
+import type { Pin, User } from '$lib/types'
 
-import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
 
 import { Feed, Layout, Pins } from '$components'
-import { userQuery } from '$lib/query'
+import { userQuery, searchQuery } from '$lib/query'
 import { sanityClient } from '$lib/sanity'
 
 export default function CategoryPage({ user }: PageProps) {
@@ -28,18 +27,22 @@ export const getServerSideProps: GetServerSideProps = async context => {
       },
     }
   }
-
-  const query = userQuery(session.user.uid!)
-  const user = await sanityClient.fetch(query)
+  const { categoryId } = context.query
+  const [user] = await Promise.all([
+    sanityClient.fetch(userQuery(session.user.uid!)),
+    // sanityClient.fetch(searchQuery(categoryId as string)),
+  ])
 
   return {
     props: {
       session,
       user,
+      // pins,
     },
   }
 }
 
 interface PageProps {
   user: User
+  // pins: Pin[]
 }

@@ -13,3 +13,14 @@ export interface User {
   name: string
   image: string
 }
+
+export interface Pin {
+  _id: string
+  image: string
+  destination: string
+  postedBy: User
+  save: {
+    _key: string
+    postedBy: User
+  }[]
+}
