@@ -16,11 +16,16 @@ export interface User {
 
 export interface Pin {
   _id: string
-  image: string
+  title: string
+  image: {
+    asset: { url: string }
+  }
   destination: string
   postedBy: User
-  save: {
-    _key: string
-    postedBy: User
-  }[]
+  save:
+    | {
+        _key: string
+        postedBy: User
+      }[]
+    | undefined
 }

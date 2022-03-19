@@ -20,12 +20,13 @@ export default async function handler(
         name,
         image,
       })
+      return res.status(201).json({ message: 'User created' })
     } catch (error) {
       console.error(error)
-      res.status(500).json({ message: 'Failed to create comment', error })
+      return res
+        .status(500)
+        .json({ message: 'Failed to create comment', error })
     }
-
-    return res.status(201).json({ message: 'User created' })
   }
 
   return res.status(405).end()
