@@ -6,7 +6,8 @@ const commentSchema = {
     {
       name: 'postedBy',
       title: 'Posted By',
-      type: 'postedBy',
+      type: 'reference',
+      to: { type: 'user' },
     },
     {
       name: 'comment',
